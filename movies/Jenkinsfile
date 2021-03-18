@@ -91,7 +91,9 @@ pipeline {
 
         stage('Wait for deployment in DEV env') {
             //TODO: Watch deployment until pod is in 'Running' state
-            sh "oc rollout status ${APP_NAME} -w"
+            steps {
+              sh "oc rollout status ${APP_NAME} -w"
+            }
         }
 
         stage('Promote to Staging Env') {
